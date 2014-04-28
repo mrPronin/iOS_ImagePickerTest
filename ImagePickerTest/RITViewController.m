@@ -11,9 +11,10 @@
 
 @interface RITViewController ()
 
-static UIImage *shrinkImage(UIImage *original, CGSize size);
-- (void) updateDisplay;
-- (void) getMediaFromSource:(UIImagePickerControllerSourceType) sourceType;
+@property (strong, nonatomic) MPMoviePlayerController *moviePlayerController;
+@property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) NSURL *movieURL;
+@property (strong, nonatomic) NSString *lastChosenMediaType;
 
 @end
 
@@ -27,7 +28,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
         
         self.takePictureButton.hidden = YES;
     }
-    self.imageFrame = self.imageView.frame;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -36,41 +36,111 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     [self updateDisplay];
 }
 
-- (void) dealloc {
+- (void)updateDisplay
+{
     
-    self.moviePlayercontroller = nil;
+    if ([self.lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
+        
+        self.imageView.image = self.image;
+        self.imageView.hidden = NO;
+        self.moviePlayerController.view.hidden = YES;
+        
+    } else if ([self.lastChosenMediaType isEqual:(NSString *)kUTTypeMovie]) {
+        
+        [self.moviePlayerController.view removeFromSuperview];
+        self.moviePlayerController = [[MPMoviePlayerController alloc]
+                                      initWithContentURL:self.movieURL];
+        [self.moviePlayerController play];
+        UIView *movieView = self.moviePlayerController.view;
+        movieView.frame = self.imageView.frame;
+        movieView.clipsToBounds = YES;
+        [self.view addSubview:movieView];
+        self.imageView.hidden = YES;
+        
+    }
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - Helper methods
+
+- (void)pickMediaFromSource:(UIImagePickerControllerSourceType)sourceType
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSArray *mediaTypes = [UIImagePickerController
+                           availableMediaTypesForSourceType:sourceType];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:
+         sourceType] && [mediaTypes count] > 0) {
+        
+        /*
+        NSArray *mediaTypes = [UIImagePickerController
+                               availableMediaTypesForSourceType:sourceType];
+        */
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        
+        picker.mediaTypes = mediaTypes;
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self presentViewController:picker animated:YES completion:NULL];
+        
+    } else {
+        
+        UIAlertView *alert =
+        [[UIAlertView alloc] initWithTitle:@"Error accessing media"
+                                   message:@"Device doesn’t support that media source."
+                                  delegate:nil
+                         cancelButtonTitle:@"Drat!"
+                         otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (UIImage *)shrinkImage:(UIImage *)original toSize:(CGSize)size
+{
+    UIGraphicsBeginImageContextWithOptions(size, YES, 0);
+    [original drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *final = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return final;
 }
 
 #pragma mark - Actions
 
 - (IBAction)shootPictureOrVideo:(UIButton *)sender {
     
-    [self getMediaFromSource:UIImagePickerControllerSourceTypeCamera];
+    [self pickMediaFromSource:UIImagePickerControllerSourceTypeCamera];
 }
 
 - (IBAction)selectExistingPictureOrVideo:(UIButton *)sender {
     
-    [self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self pickMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
 #pragma mark - UIImagePickerController delegate mathods
 
-- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    self.lastChosenMediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    if ([self.lastChosenMediaType isEqualToString:(NSString*)kUTTypeImage]) {
-        UIImage *chosenImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        UIImage *shrunkedImage = shrunkedImage(chosenImage, self.imageFrame.size);
-        self.image = shrunkedImage;
-    } else {
+    self.lastChosenMediaType = info[UIImagePickerControllerMediaType];
+    
+    if ([self.lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
         
+        UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+        UIImage *shrunkenImage = [self shrinkImage:chosenImage toSize:self.imageView.bounds.size];
+        self.image = shrunkenImage;
+        
+    } else if ([self.lastChosenMediaType isEqual:(NSString *)kUTTypeMovie]) {
+        
+        self.movieURL = info[UIImagePickerControllerMediaURL];
     }
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

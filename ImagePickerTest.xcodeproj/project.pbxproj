@@ -24,6 +24,7 @@
 		3EFD5D83190E7AB9004C51C4 /* ImagePickerTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD5D82190E7AB9004C51C4 /* ImagePickerTestTests.m */; };
 		3EFD5D8D190E82BC004C51C4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFD5D8C190E82BC004C51C4 /* MediaPlayer.framework */; };
 		3EFD5D8F190E82CA004C51C4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFD5D8E190E82CA004C51C4 /* MobileCoreServices.framework */; };
+		A2D4550B190EFB910037AB2C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D4550A190EFB910037AB2C /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		3EFD5D82190E7AB9004C51C4 /* ImagePickerTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePickerTestTests.m; sourceTree = "<group>"; };
 		3EFD5D8C190E82BC004C51C4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3EFD5D8E190E82CA004C51C4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A2D4550A190EFB910037AB2C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D4550B190EFB910037AB2C /* AssetsLibrary.framework in Frameworks */,
 				3EFD5D8F190E82CA004C51C4 /* MobileCoreServices.framework in Frameworks */,
 				3EFD5D8D190E82BC004C51C4 /* MediaPlayer.framework in Frameworks */,
 				3EFD5D57190E7AB8004C51C4 /* CoreGraphics.framework in Frameworks */,
@@ -109,6 +112,7 @@
 		3EFD5D53190E7AB8004C51C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2D4550A190EFB910037AB2C /* AssetsLibrary.framework */,
 				3EFD5D8E190E82CA004C51C4 /* MobileCoreServices.framework */,
 				3EFD5D8C190E82BC004C51C4 /* MediaPlayer.framework */,
 				3EFD5D54190E7AB8004C51C4 /* Foundation.framework */,
@@ -479,6 +483,7 @@
 				3EFD5D88190E7AB9004C51C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EFD5D89190E7AB9004C51C4 /* Build configuration list for PBXNativeTarget "ImagePickerTestTests" */ = {
 			isa = XCConfigurationList;
@@ -487,6 +492,7 @@
 				3EFD5D8B190E7AB9004C51C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

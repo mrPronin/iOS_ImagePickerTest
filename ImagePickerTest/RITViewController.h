@@ -14,12 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
 
-@property (strong, nonatomic) MPMoviePlayerController *moviePlayercontroller;
-@property (strong, nonatomic) UIImage *image;
-@property (strong, nonatomic) NSURL *movieURL;
-@property (strong, nonatomic) NSString *lastChosenMediaType;
-@property (assign, nonatomic) CGRect imageFrame;
-
 - (IBAction)shootPictureOrVideo:(UIButton *)sender;
 - (IBAction)selectExistingPictureOrVideo:(UIButton *)sender;
 

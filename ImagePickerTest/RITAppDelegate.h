@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class RITViewController;
+
 @interface RITAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) RITViewController *viewController;
 
 @end
