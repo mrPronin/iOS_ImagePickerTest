@@ -22,6 +22,8 @@
 		3EFD5D79190E7AB9004C51C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFD5D58190E7AB9004C51C4 /* UIKit.framework */; };
 		3EFD5D81190E7AB9004C51C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD5D7F190E7AB9004C51C4 /* InfoPlist.strings */; };
 		3EFD5D83190E7AB9004C51C4 /* ImagePickerTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD5D82190E7AB9004C51C4 /* ImagePickerTestTests.m */; };
+		3EFD5D8D190E82BC004C51C4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFD5D8C190E82BC004C51C4 /* MediaPlayer.framework */; };
+		3EFD5D8F190E82CA004C51C4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFD5D8E190E82CA004C51C4 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		3EFD5D7E190E7AB9004C51C4 /* ImagePickerTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ImagePickerTestTests-Info.plist"; sourceTree = "<group>"; };
 		3EFD5D80190E7AB9004C51C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3EFD5D82190E7AB9004C51C4 /* ImagePickerTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePickerTestTests.m; sourceTree = "<group>"; };
+		3EFD5D8C190E82BC004C51C4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3EFD5D8E190E82CA004C51C4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EFD5D8F190E82CA004C51C4 /* MobileCoreServices.framework in Frameworks */,
+				3EFD5D8D190E82BC004C51C4 /* MediaPlayer.framework in Frameworks */,
 				3EFD5D57190E7AB8004C51C4 /* CoreGraphics.framework in Frameworks */,
 				3EFD5D59190E7AB9004C51C4 /* UIKit.framework in Frameworks */,
 				3EFD5D55190E7AB8004C51C4 /* Foundation.framework in Frameworks */,
@@ -103,6 +109,8 @@
 		3EFD5D53190E7AB8004C51C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3EFD5D8E190E82CA004C51C4 /* MobileCoreServices.framework */,
+				3EFD5D8C190E82BC004C51C4 /* MediaPlayer.framework */,
 				3EFD5D54190E7AB8004C51C4 /* Foundation.framework */,
 				3EFD5D56190E7AB8004C51C4 /* CoreGraphics.framework */,
 				3EFD5D58190E7AB9004C51C4 /* UIKit.framework */,
